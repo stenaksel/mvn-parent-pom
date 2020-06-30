@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ske.felles</groupId>
+  <artifactId>mvn-parent-pom</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>mvn-parent-pom</name>
+  <!--
+  Activate profiles by adding them to your in your ~/.m2/settings.xml file, like shown below:
+	<activeProfiles>
+		<activeProfile>mvn-debug</activeProfile>
+		<activeProfile>show-profiles-used</activeProfile>
+		<activeProfile>show-version-info</activeProfile>
+	</activeProfiles>
+  Activate the "mvn-debug" profile to get hints for the use and configuration of your project.
+  Activate the "show-version-info" to be informed of new versions of dependencies and plugins.
+  -->
+  <properties>
+    <?SORTPOM IGNORE?>
+    <!--    <show-version-info>true</show-version-info>-->
+    <!-- Line above because we use the sortpom-maven-plugin (to keep the file sorted), but not here (until RESUME) -->
+    <project.encoding>UTF-8</project.encoding>
+    <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
+    <sortpom-predefinedSortOrder>custom_1</sortpom-predefinedSortOrder>
+    <?SORTPOM RESUME?>
+
+    <aurora-require.compileSource>1.8</aurora-require.compileSource>
+    <aurora-require.min-version.java>1.8.0-191</aurora-require.min-version.java>
+    <aurora-require.min-version.maven>3.6.1</aurora-require.min-version.maven>
+    <enforce-version-consistency.version>0.0.13</enforce-version-consistency.version>
+    <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
+    <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+    <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+    <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+    <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
+    <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
+    <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+    <maven-project-info-reports-plugin.version>3.1.0</maven-project-info-reports-plugin.version>
+    <maven-reactor-plugin.version>1.1</maven-reactor-plugin.version>
+    <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
+    <mvn-debug>true</mvn-debug>
+    <mvn-echo-maven-plugin.version>1.3.0</mvn-echo-maven-plugin.version>
+    <mvn-nexus-staging-maven-plugin.version>1.6.8</mvn-nexus-staging-maven-plugin.version>
+    <mvn-sortpom-maven-plugin.version>2.11.0</mvn-sortpom-maven-plugin.version>
+    <mvn-spotbugs-maven-plugin.version>4.0.4</mvn-spotbugs-maven-plugin.version>
+    <mvn-versions-maven-plugin.version>2.7</mvn-versions-maven-plugin.version>
+    <profile-in-use-info>Profile mvn-debug was not used!</profile-in-use-info>
+    <!--    <skip-show-properties>${skip-mvn-debug}</skip-show-properties>-->
+  </properties>
+
+  <build>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${maven-site-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>${maven-clean-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${maven-deploy-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${maven-install-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>${maven-project-info-reports-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-reactor-plugin</artifactId>
+          <version>${maven-reactor-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${maven-enforcer-plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>ske.prosess.styring.saksmappe.enforce-version-consistency</groupId>
+            <artifactId>enforce-version-consistency</artifactId>
+            <version>${enforce-version-consistency.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>requireMavenVersion mvn-parent-pom</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <!-- // @formatter:off -->
+                  <!--suppress UnresolvedMavenProperty -->
+                  <message>(Maven kjørte "${project.name}":
+
+                      /\/\   __ ___   _____ _ __
+                     /    \ / _` \ \ / / _ \ '_ \
+                    / /\/\ \ (_| |\ V /  __/ | | |
+                    \/    \/\__,_| \_/ \___|_| |_| ${maven.version}
+                    fra ${maven.home}
+
+                    For gammel versjon av Maven benyttes!
+                    (I bruk nå er versjon = ${maven.version} fra ${maven.home})
+                    Krav konfigurert mvn-parent-pom ('requireMavenVersion', krever versjon &gt;=
+                    ${mvn.minVer})
+                    (Kravet kan overstyres ved å justere property "aurora-require.min-version.maven". Ikke anbefalt!)</message>
+                  <!-- // @formatter:on -->
+                  <version>[${aurora-require.min-version.maven},)</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>requireJavaVersion mvn-parent-pom</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>[${aurora-require.min-version.java},]</version>
+                  <message>Maven kjørte "${project.name}" med følgende parametere [sun.java.command]:
+                    ${sun.java.command}
+                    ==========================================================
+                    For gammel versjon av Java benyttes (v. ${java.version} )!
+                    ==========================================================
+                    Krav konfigurert i mvn-parent-pom ('requireJavaVersion')
+                    krever versjon &gt;= ${aurora-require.min-version.java}!
+                    Nå var det versjon ${java.version} som ble benyttet - fra ${java.library.path})
+
+                    (Kravet kan overstyres ved å justere property "aurora-require.min-version.java". Ikke anbefalt!)
+                  </message>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>requirePluginVersions mvn-parent-pom</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requirePluginVersions>
+                  <message>Maven kjørte "${project.name}" med følgende parametere [sun.java.command]:
+                    ${sun.java.command}
+                    ==============================================================
+                      Alle plugins som benyttes må ha en spesifisert versjon!
+                    ==============================================================
+                    Krav konfigurert i mvn-parent-pom ('requirePluginVersions')
+                  </message>
+                  <banLatest>true</banLatest>
+                  <banRelease>true</banRelease>
+                  <banSnapshots>true</banSnapshots>
+                  <phases>clean,deploy,site</phases>
+                  <additionalPlugins>
+                    <additionalPlugin>org.apache.maven.plugins:maven-reactor-plugin</additionalPlugin>
+                  </additionalPlugins>
+                  <unCheckedPluginList>org.apache.maven.plugins:maven-enforcer-plugin</unCheckedPluginList>
+                </requirePluginVersions>
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>dependencyConvergence mvn-parent-pom</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <dependencyConvergence>
+                  <uniqueVersions>true</uniqueVersions>
+                </dependencyConvergence>
+              </rules>
+            </configuration>
+          </execution>
+          <!--
+          <execution>
+            <id>enforce4aurora-parent</id>
+            <configuration>
+              <rules>
+                <banDuplicatePomDependencyVersions />
+                &lt;!&ndash;
+                                <banTransitiveDependencies>
+                                  <excludes>
+                                    &lt;!&ndash;                    <exclude>commons-lang</exclude>&ndash;&gt;
+                                  </excludes>
+                                  <includes>
+                                    &lt;!&ndash;                    <include>commons-lang:commons-lang:2.4</include>&ndash;&gt;
+                                  </includes>
+                                </banTransitiveDependencies>
+                &ndash;&gt;
+                <bannedDependencies>
+                  &lt;!&ndash; a list of artifacts to ban: &ndash;&gt;
+&lt;!&ndash;
+                  <excludes>
+                    <exclude>commons-collections:commons-collections:[3.0,3.2.1]</exclude>
+                    <exclude>commons-collections:commons-collections:4.0</exclude>
+                    <exclude>org.codehaus.jackson:jackson-mapper-asl:1.9.13</exclude>
+                  </excludes>
+&ndash;&gt;
+                </bannedDependencies>
+                <consistency implementation="ske.prosess.styring.saksmappe.enforceversionconsistency.Rule">
+                  <supergroups>
+                    <supergroup>com.fasterxml.jackson</supergroup>
+                    <supergroup>org.glassfish.jersey</supergroup>
+                  </supergroups>
+                  <excludes>
+                    <exclude>com.google.code.findbugs:annotations</exclude>
+                    <exclude>com.google.guava</exclude>
+                    <exclude>com.mchange</exclude>
+                    <exclude>info.cukes</exclude>
+                    <exclude>io.cucumber</exclude>
+                    <exclude>io.dropwizard.metrics:metrics-core</exclude>
+                    <exclude>io.dropwizard.metrics:metrics-healthchecks</exclude>
+                    <exclude>io.dropwizard.metrics:metrics-httpclient</exclude>
+                    <exclude>io.dropwizard.metrics:metrics-jmx</exclude>
+                    <exclude>io.gatling:jsonpath_2.11</exclude>
+                    <exclude>io.gatling:jsonpath_2.12</exclude>
+                    <exclude>io.netty:netty</exclude>
+                    <exclude>javax.activation</exclude>
+                    <exclude>javax.annotation</exclude>
+                    <exclude>javax.servlet:servlet-api</exclude>
+                    <exclude>net.minidev:accessors-smart</exclude>
+                    <exclude>net.minidev:asm</exclude>
+                    <exclude>org.antlr:antlr-runtime</exclude>
+                    <exclude>org.antlr:antlr4-runtime</exclude>
+                    <exclude>org.apache.commons:commons-collections4</exclude>
+                    <exclude>org.apache.commons:commons-lang3</exclude>
+                    <exclude>org.apache.geronimo.specs</exclude>
+                    <exclude>org.apache.httpcomponents:httpcore</exclude>
+                    <exclude>org.codehaus.woodstox:stax2-api</exclude>
+                    <exclude>org.codehaus.woodstox:wstx-asl</exclude>
+                    <exclude>org.eclipse.jetty.orbit</exclude>
+                    <exclude>org.elasticsearch</exclude>
+                    <exclude>org.glassfish.hk2:osgi-resource-locator</exclude>
+                    <exclude>org.glassfish.hk2.external</exclude>
+                    <exclude>org.glassfish.jersey.ext.rx:jersey-rx-client</exclude>
+                    <exclude>org.glassfish</exclude>
+                    <exclude>org.hibernate:hibernate-validator</exclude>
+                    <exclude>org.jboss.logging:jboss-logging-annotations</exclude>
+                    <exclude>org.knowm</exclude>
+                    <exclude>org.scala-lang.modules</exclude>
+                    <exclude>ske.etterlevelse.navnerom:navnerom-landforland</exclude>
+                    <exclude>ske.etterlevelse.navnerom:navnerom-saft</exclude>
+                    <exclude>ske.fastsetting.navnerom:navnerom-safir</exclude>
+                    <exclude>ske.fastsetting.navnerom:navnerom-sofus</exclude>
+                    <exclude>ske.felles:saklig-oppslagstjeneste</exclude>
+                    <exclude>ske.sikkerhet.autorisering.xacml:attributter</exclude>
+                  </excludes>
+                </consistency>
+              </rules>
+            </configuration>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+-->
+          <execution>
+            <id>enforce-reactor-OK mvn-parent-pom</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <reactorModuleConvergence>
+                  <message>The reactor is not valid</message>
+                  <ignoreModuleDependencies>true</ignoreModuleDependencies>
+                </reactorModuleConvergence>
+              </rules>
+              <fail>true</fail>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce4mvn-parent-pom</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <!--                <banDuplicatePomDependencyVersions />-->
+                <!--
+                                <banTransitiveDependencies>
+                                  <excludes>
+                                    &lt;!&ndash;                    <exclude>commons-lang</exclude>&ndash;&gt;
+                                  </excludes>
+                                  <includes>
+                                    &lt;!&ndash;                    <include>commons-lang:commons-lang:2.4</include>&ndash;&gt;
+                                  </includes>
+                                </banTransitiveDependencies>
+                -->
+                <bannedDependencies>
+                  <excludes>
+                    <exclude>commons-collections:commons-collections:[3.0,3.2.1]</exclude>
+                    <exclude>commons-collections:commons-collections:4.0</exclude>
+                    <exclude>org.codehaus.jackson:jackson-mapper-asl:1.9.13</exclude>
+                  </excludes>
+                </bannedDependencies>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${maven-failsafe-plugin.version}</version>
+        <configuration>
+          <forkCount>1</forkCount>
+          <reuseForks>false</reuseForks>
+        </configuration>
+        <executions>
+          <!-- Ensures that both integration-test and verify goals of the Failsafe Maven plugin are executed. -->
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <url>http://aurora/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>Internal Snapshots</name>
+      <url>http://aurora/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>mvn-debug</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>!skip-mvn-debug</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <properties>
+        <profile-in-use-info>Profile "mvn-debug" is in use!</profile-in-use-info>
+        <profile-in-use_mvn-debug>Yes (skip-mvn-debug=${skip-mvn-debug})(skip-mvn_debug=${skip-mvn_debug})
+        </profile-in-use_mvn-debug>
+        <show-version-info>true</show-version-info>
+        <skip-mvn-debug>(Overridden by profile activation: "mvn-debug")</skip-mvn-debug>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.ekryd.echo-maven-plugin</groupId>
+            <artifactId>echo-maven-plugin</artifactId>
+            <version>${mvn-echo-maven-plugin.version}</version>
+            <inherited>true</inherited>
+            <executions>
+              <execution>
+                <id>show-message_none</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>none</phase>
+                <configuration>
+                  <message><![CDATA[${line.separator}
+              skip-mvn-debug=${skip-mvn-debug}
+              skip-mvn_debug=${skip-mvn_debug}
+                =======================================================================================
+                n o n e
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+              <execution>
+                <id>show-message_validate</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>validate</phase>
+                <configuration>
+                  <!-- Text for Maven phases created with: http://patorjk.com/software/taag/#p=display&f=Ogre -->
+                  <message><![CDATA[${line.separator}
+              skip-mvn-debug=${skip-mvn-debug}
+              skip-mvn_debug=${skip-mvn_debug}
+                =======================================================================================
+                                 _   _       _           _
+                __   __   __ _  | | (_)   __| |   __ _  | |_    ___
+                \ \ / /  / _` | | | | |  / _` |  / _` | | __|  / _ \
+                 \ V /  | (_| | | | | | | (_| | | (_| | | |_  |  __/
+                  \_/    \__,_| |_| |_|  \__,_|  \__,_|  \__|  \___|
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+              <execution>
+                <id>show-message_clean</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>clean</phase>
+                <configuration>
+                  <!--suppress UnresolvedMavenProperty -->
+                  <message><![CDATA[${line.separator}
+              skip-mvn-debug=${skip-mvn-debug}
+              skip-mvn_debug=${skip-mvn_debug}
+                =======================================================================================
+                        _
+                  ___  | |   ___    __ _   _ __
+                 / __| | |  / _ \  / _` | | '_ \
+                | (__  | | |  __/ | (_| | | | | |
+                 \___| |_|  \___|  \__,_| |_| |_|
+
+                =======================================================================================
+                Maven kjørte "${project.build.finalName}" (${basedir})
+                (${build.timestamp})
+                (${session.executionRootDirectory})
+                ---------------------------------------------------------------------------------------
+                ${profile-in-use-info} (Reported by mvn-debug)
+                Activate profiles by default by adding them to your ~/.m2/settings.xml file,
+                like shown below:
+                <activeProfiles>
+                  <activeProfile>nexus</activeProfile>
+                  <activeProfile>POM-sort</activeProfile>
+                  <activeProfile>mvn-debug</activeProfile>
+                </activeProfiles>
+
+                Activate the "mvn-debug" profile to get hints for the use and configuration of your project.
+                Activate the "POM-sort" profile to keep the POM file sorted.
+                =======================================================================================
+                | Det er mvn-parent-pom som har konfigurert deler av dette bygget,
+                | "${project.build.finalName}" kjøres av Maven (v ${maven.version})
+                | (${maven.home})
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+              <execution>
+                <id>show-message_compile</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>compile</phase>
+                <configuration>
+                  <message><![CDATA[${line.separator}
+              skip-mvn-debug=${skip-mvn-debug}
+              skip-mvn_debug=${skip-mvn_debug}
+                =======================================================================================
+                                                    _   _
+                  ___    ___    _ __ ___    _ __   (_) | |   ___
+                 / __|  / _ \  | '_ ` _ \  | '_ \  | | | |  / _ \
+                | (__  | (_) | | | | | | | | |_) | | | | | |  __/
+                 \___|  \___/  |_| |_| |_| | .__/  |_| |_|  \___|
+                                           |_|
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+              <execution>
+                <id>show-message_test</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>test</phase>
+                <configuration>
+                  <message><![CDATA[${line.separator}
+              skip-mvn-debug=${skip-mvn-debug}
+              skip-mvn_debug=${skip-mvn_debug}
+                =======================================================================================
+                 _                  _
+                | |_    ___   ___  | |_
+                | __|  / _ \ / __| | __|
+                | |_  |  __/ \__ \ | |_
+                 \__|  \___| |___/  \__|
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+              <execution>
+                <id>show-message_package</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>package</phase>
+                <configuration>
+                  <message><![CDATA[${line.separator}
+                =======================================================================================
+                                        _
+                 _ __     __ _    ___  | | __   __ _    __ _    ___
+                | '_ \   / _` |  / __| | |/ /  / _` |  / _` |  / _ \
+                | |_) | | (_| | | (__  |   <  | (_| | | (_| | |  __/
+                | .__/   \__,_|  \___| |_|\_\  \__,_|  \__, |  \___|
+                |_|                                    |___/
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+              <execution>
+                <id>show-message_verify</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>verify</phase>
+                <configuration>
+                  <message><![CDATA[${line.separator}
+                =======================================================================================
+                                       _    __
+                __   __   ___   _ __  (_)  / _|  _   _
+                \ \ / /  / _ \ | '__| | | | |_  | | | |
+                 \ V /  |  __/ | |    | | |  _| | |_| |
+                  \_/    \___| |_|    |_| |_|    \__, |
+                                                 |___/
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+              <execution>
+                <id>show-message_install</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>install</phase>
+                <configuration>
+                  <message><![CDATA[${line.separator}
+              skip-mvn-debug=${skip-mvn-debug}
+              skip-mvn_debug=${skip-mvn_debug}
+                =======================================================================================
+                 _                 _             _   _
+                (_)  _ __    ___  | |_    __ _  | | | |
+                | | | '_ \  / __| | __|  / _` | | | | |
+                | | | | | | \__ \ | |_  | (_| | | | | |
+                |_| |_| |_| |___/  \__|  \__,_| |_| |_|
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+              <execution>
+                <id>show-message_site</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>clean</phase>
+                <configuration>
+                  <message><![CDATA[${line.separator}
+                =======================================================================================
+                       _   _
+                 ___  (_) | |_    ___
+                / __| | | | __|  / _ \
+                \__ \ | | | |_  |  __/
+                |___/ |_|  \__|  \___|
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+              <execution>
+                <id>show-message_deploy</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <message><![CDATA[${line.separator}
+                =======================================================================================
+                     _                  _
+                  __| |   ___   _ __   | |   ___    _   _
+                 / _` |  / _ \ | '_ \  | |  / _ \  | | | |
+                | (_| | |  __/ | |_) | | | | (_) | | |_| |
+                 \__,_|  \___| | .__/  |_|  \___/   \__, |
+                               |_|                  |___/
+                =======================================================================================]]></message>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- display active profile in validate phase -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-help-plugin</artifactId>
+            <version>${maven-help-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>show-profiles</id>
+                <goals>
+                  <goal>active-profiles</goal>
+                </goals>
+                <phase>validate</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>POM-sort</id>
+      <!-- Deaktiver profilen med -P POM-sort eller i settings.xml <activeProfile>POM-sort</activeProfile>-->
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <profile-in-use_POM-sort>Yes (profile used)</profile-in-use_POM-sort>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.ekryd.sortpom</groupId>
+            <artifactId>sortpom-maven-plugin</artifactId>
+            <version>${mvn-sortpom-maven-plugin.version}</version>
+            <configuration>
+              <encoding>${project.encoding}</encoding>
+              <expandEmptyElements>false</expandEmptyElements>
+              <indentBlankLines>true</indentBlankLines>
+              <keepBlankLines>true</keepBlankLines>
+              <lineSeparator>\n</lineSeparator>
+              <predefinedSortOrder>${sortpom-predefinedSortOrder}</predefinedSortOrder>
+              <sortDependencies>artifactId, groupId</sortDependencies>
+              <sortProperties>true</sortProperties>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>show-properties</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>!skip-show-properties</name>
+        </property>
+      </activation>
+      <properties>
+        <profile-in-use_show-properties>Yes (skip-show-properties=${skip-show-properties})
+        </profile-in-use_show-properties>
+        <skip-show-properties>false (Overridden by profile activation: "show-properties")</skip-show-properties>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.ekryd.echo-maven-plugin</groupId>
+            <artifactId>echo-maven-plugin</artifactId>
+            <version>${mvn-echo-maven-plugin.version}</version>
+            <inherited>true</inherited>
+            <executions>
+              <execution>
+                <id>show-message4show-properties</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <phase>validate</phase>
+                <configuration>
+                  <!--suppress UnresolvedMavenProperty -->
+                  <message>${line.separator}
+                    skip-mvn-debug=${skip-mvn-debug}
+                    skip-mvn_debug=${skip-mvn_debug}
+                    =======================================================================================
+                    show-properties
+                    profilen "show-properties" ble benyttet:
+                    Maven_kjørte "${project.build.finalName}", og profilen skip-mvn-debug ble benyttet:
+                    (Maven (v ${maven.version}) fra ${maven.home}
+                    ${profile-in-use-info}
+                    ---------------------------------------------------------------------------------------
+                    mvn-parent-pom reporting: ${profile-in-use-info}
+                    =======================================================================================
+                  </message>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>${maven-antrun-plugin.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>validate</phase>
+                <configuration>
+                  <target>
+                    <echoproperties />
+                    <!--                    <echoproperties prefix="skip"/>-->
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>show-profiles-used</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>!skip-mvn-debug</name>
+        </property>
+      </activation>
+      <properties>
+        <profile-in-use_show-profiles-used>Yes (skip-show-profiles-used=${skip-show-profiles-used})
+        </profile-in-use_show-profiles-used>
+        <skip-show-profiles-used>(Overridden by profile activation: "show-profiles-used")</skip-show-profiles-used>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>${maven-antrun-plugin.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>validate</phase>
+                <configuration>
+                  <target>
+                    <echoproperties prefix="profile" />
+                    <echoproperties prefix="show" />
+                    <echoproperties prefix="skip" />
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>show-version-info</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <!-- Deactivate profile using -Dskip-show-version-info or -P !show-version-info -->
+        <property>
+          <name>!skip-mvn-debug</name>
+        </property>
+      </activation>
+      <properties>
+        <profile-in-use_show-version-info>Yes (show-version-info=${show-version-info})
+        </profile-in-use_show-version-info>
+        <skip-show-version-info>(Overridden by profile activation: "show-version-info")</skip-show-version-info>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <version>${mvn-versions-maven-plugin.version}</version>
+            <!--
+            <configuration>
+              <rulesUri>src/main/resources/versions.xml</rulesUri>
+            </configuration>
+            -->
+            <executions>
+              <execution>
+                <goals>
+                  <goal>display-dependency-updates</goal>
+                  <goal>display-plugin-updates</goal>
+                </goals>
+                <phase>compile</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+
+      </build>
+    </profile>
+    <profile>
+      <id>skip-mvn-debug</id>
+      <properties>
+        <no-debug>true</no-debug>
+        <profile-in-use-info>(Potential use of mvn-debug SKIPPED) Using "skip-mvn-debug" profile!</profile-in-use-info>
+        <profile-in-use_skip-mvn-debug>Yes</profile-in-use_skip-mvn-debug>
+        <skip-mvn-debug>true</skip-mvn-debug>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.ekryd.echo-maven-plugin</groupId>
+            <artifactId>echo-maven-plugin</artifactId>
+            <version>${mvn-echo-maven-plugin.version}</version>
+            <inherited>true</inherited>
+            <executions>
+              <execution>
+                <id>show-message4skip-mvn-debug</id>
+                <goals>
+                  <goal>echo</goal>
+                </goals>
+                <!--            <phase>install</phase>-->
+                <configuration>
+                  <!--suppress UnresolvedMavenProperty -->
+                  <message>${line.separator}
+                    =======================================================================================
+                    skip-mvn-debug
+                    Maven_kjørte "${project.build.finalName}", og profilen skip-mvn-debug ble benyttet:
+                    (Maven (v ${maven.version}) fra ${maven.home}
+                    ${profile-in-use-info}
+                    ---------------------------------------------------------------------------------------
+                    mvn-parent-pom reporting: ${profile-in-use-info}
+                    =======================================================================================
+                    | Det er mvn-parent-pom (${project.version}) som har konfigurert deler
+                    | av dette bygget, som er kjørt av ${maven.home}
+                    | Maven profilen skip-mvn-debug er benyttet for å vise denne informasjonen
+                    =======================================================================================
+                  </message>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+</project>
