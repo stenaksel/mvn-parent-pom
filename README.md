@@ -4,7 +4,7 @@ When working with Maven as a build system, you often end up copying configuratio
 different plugins from an old project pom.xml file to the pom.xml file in a new project.
 
 Getting configuration and settings right can be timeconsuming so reuse is helpful.
-A Maven best-practice solution is using a "parent POM" for your new project (instead of copying).
+A Maven best-practice solution is using a *"parent POM"* for your new project (instead of copying).
 A Maven parent POM can collect common configurations and settings that shall be used by many projects in your company.  
 
 This is a typical setup: 

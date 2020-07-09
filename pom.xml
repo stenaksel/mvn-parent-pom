@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <!--  <groupId>org.common</groupId>-->
-  <groupId>ske.felles</groupId>
+  <groupId>org.common</groupId>
   <artifactId>mvn-parent-pom</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -105,7 +104,7 @@
     <!--    <skip-show-properties>-</skip-show-properties>-->
     <!--    <skip-show-profiles-used>-</skip-show-profiles-used>-->
     <profile-in-use-info>To include all profiles in use in the list shown (by show-profiles-used"),
-      you must include a property TODO</profile-in-use-info>
+      you must include a property //TODO</profile-in-use-info>
     <profile-mvn-debug-info>Profile mvn-debug was not used!</profile-mvn-debug-info>
     <!--    <skip-show-properties>${skip-mvn-debug}</skip-show-properties>-->
   </properties>
@@ -128,6 +127,16 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>${maven-enforcer-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${maven-failsafe-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-help-plugin</artifactId>
+          <version>${maven-help-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -290,7 +299,7 @@
               <rules>
                 <dependencyConvergence>
                   <!-- // @formatter:off -->
-                  <!--TODO
+                  <!--//TODO
                   <message>Maven kjørte "${project.name}" med følgende parametere [sun.java.command]:
       ${sun.java.command}
            _                           _                         ___
@@ -310,88 +319,6 @@
               </rules>
             </configuration>
           </execution>
-          <!--
-          <execution>
-            <id>enforce4aurora-parent</id>
-            <configuration>
-              <rules>
-                <banDuplicatePomDependencyVersions />
-                &lt;!&ndash;
-                                <banTransitiveDependencies>
-                                  <excludes>
-                                    &lt;!&ndash;                    <exclude>commons-lang</exclude>&ndash;&gt;
-                                  </excludes>
-                                  <includes>
-                                    &lt;!&ndash;                    <include>commons-lang:commons-lang:2.4</include>&ndash;&gt;
-                                  </includes>
-                                </banTransitiveDependencies>
-                &ndash;&gt;
-                <bannedDependencies>
-                  &lt;!&ndash; a list of artifacts to ban: &ndash;&gt;
-&lt;!&ndash;
-                  <excludes>
-                    <exclude>commons-collections:commons-collections:[3.0,3.2.1]</exclude>
-                    <exclude>commons-collections:commons-collections:4.0</exclude>
-                    <exclude>org.codehaus.jackson:jackson-mapper-asl:1.9.13</exclude>
-                  </excludes>
-&ndash;&gt;
-                </bannedDependencies>
-                <consistency implementation="ske.prosess.styring.saksmappe.enforceversionconsistency.Rule">
-                  <supergroups>
-                    <supergroup>com.fasterxml.jackson</supergroup>
-                    <supergroup>org.glassfish.jersey</supergroup>
-                  </supergroups>
-                  <excludes>
-                    <exclude>com.google.code.findbugs:annotations</exclude>
-                    <exclude>com.google.guava</exclude>
-                    <exclude>com.mchange</exclude>
-                    <exclude>info.cukes</exclude>
-                    <exclude>io.cucumber</exclude>
-                    <exclude>io.dropwizard.metrics:metrics-core</exclude>
-                    <exclude>io.dropwizard.metrics:metrics-healthchecks</exclude>
-                    <exclude>io.dropwizard.metrics:metrics-httpclient</exclude>
-                    <exclude>io.dropwizard.metrics:metrics-jmx</exclude>
-                    <exclude>io.gatling:jsonpath_2.11</exclude>
-                    <exclude>io.gatling:jsonpath_2.12</exclude>
-                    <exclude>io.netty:netty</exclude>
-                    <exclude>javax.activation</exclude>
-                    <exclude>javax.annotation</exclude>
-                    <exclude>javax.servlet:servlet-api</exclude>
-                    <exclude>net.minidev:accessors-smart</exclude>
-                    <exclude>net.minidev:asm</exclude>
-                    <exclude>org.antlr:antlr-runtime</exclude>
-                    <exclude>org.antlr:antlr4-runtime</exclude>
-                    <exclude>org.apache.commons:commons-collections4</exclude>
-                    <exclude>org.apache.commons:commons-lang3</exclude>
-                    <exclude>org.apache.geronimo.specs</exclude>
-                    <exclude>org.apache.httpcomponents:httpcore</exclude>
-                    <exclude>org.codehaus.woodstox:stax2-api</exclude>
-                    <exclude>org.codehaus.woodstox:wstx-asl</exclude>
-                    <exclude>org.eclipse.jetty.orbit</exclude>
-                    <exclude>org.elasticsearch</exclude>
-                    <exclude>org.glassfish.hk2:osgi-resource-locator</exclude>
-                    <exclude>org.glassfish.hk2.external</exclude>
-                    <exclude>org.glassfish.jersey.ext.rx:jersey-rx-client</exclude>
-                    <exclude>org.glassfish</exclude>
-                    <exclude>org.hibernate:hibernate-validator</exclude>
-                    <exclude>org.jboss.logging:jboss-logging-annotations</exclude>
-                    <exclude>org.knowm</exclude>
-                    <exclude>org.scala-lang.modules</exclude>
-                    <exclude>ske.etterlevelse.navnerom:navnerom-landforland</exclude>
-                    <exclude>ske.etterlevelse.navnerom:navnerom-saft</exclude>
-                    <exclude>ske.fastsetting.navnerom:navnerom-safir</exclude>
-                    <exclude>ske.fastsetting.navnerom:navnerom-sofus</exclude>
-                    <exclude>ske.felles:saklig-oppslagstjeneste</exclude>
-                    <exclude>ske.sikkerhet.autorisering.xacml:attributter</exclude>
-                  </excludes>
-                </consistency>
-              </rules>
-            </configuration>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-          </execution>
--->
           <execution>
             <id>mvn-parent-pom(maven-enforcer-plugin) banDuplicatePomDependencyVersions</id>
             <goals>
@@ -421,34 +348,6 @@
               <fail>true</fail>
             </configuration>
           </execution>
-          <execution>
-            <id>mvn-parent-pom(maven-enforcer-plugin) enforce4mvn-parent-pom</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <!--                <banDuplicatePomDependencyVersions />-->
-                <!--
-                                <banTransitiveDependencies>
-                                  <excludes>
-                                    &lt;!&ndash;                    <exclude>commons-lang</exclude>&ndash;&gt;
-                                  </excludes>
-                                  <includes>
-                                    &lt;!&ndash;                    <include>commons-lang:commons-lang:2.4</include>&ndash;&gt;
-                                  </includes>
-                                </banTransitiveDependencies>
-                -->
-                <bannedDependencies>
-                  <excludes>
-                    <exclude>commons-collections:commons-collections:[3.0,3.2.1]</exclude>
-                    <exclude>commons-collections:commons-collections:4.0</exclude>
-                    <exclude>org.codehaus.jackson:jackson-mapper-asl:1.9.13</exclude>
-                  </excludes>
-                </bannedDependencies>
-              </rules>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -473,15 +372,7 @@
   </build>
   
   <distributionManagement>
-    <repository>
-      <id>releases</id>
-      <url>http://aurora/nexus/content/repositories/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshots</id>
-      <name>Internal Snapshots</name>
-      <url>http://aurora/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
+    <!--TODO-->
   </distributionManagement>
   
   <profiles>
@@ -490,7 +381,6 @@
       <activation>
         <activeByDefault>true</activeByDefault>
         <property>
-          <!-- <name>!skip-mvn-debug</name>-->
           <name>!skip-about</name>
           <value>true</value>
         </property>
@@ -967,16 +857,10 @@
       <id>show-profiles-used</id>
       <activation>
         <activeByDefault>false</activeByDefault>
-        <property>
-          <name>!skip-show-profiles-used</name>
-          <value>true</value>
-        </property>
       </activation>
       <properties>
         <profile-in-use_-info>( Undefined properies will be shown between "${" and "}" )</profile-in-use_-info>
-        <profile-in-use_show-profiles-used>Yes (skip-show-profiles-used=${skip-show-profiles-used},
-          mvn-debug-reduced=${mvn-debug-reduced})</profile-in-use_show-profiles-used>
-        <!--        <skip-show-profiles-used>false (Overridden by activated profile: "show-profiles-used")</skip-show-profiles-used>-->
+        <profile-in-use_show-profiles-used>Yes</profile-in-use_show-profiles-used>
       </properties>
       <build>
         <plugins>
@@ -1010,15 +894,6 @@
                     <echoproperties prefix="line.-_-_" />
                     <echoproperties prefix="line.----" />
                     <echoproperties prefix="profile-in-use_" />
-                    <echoproperties prefix="line.-_-_" />
-                    <echoproperties prefix="line.----" />
-                    <echoproperties prefix="line.-_-_" />
-                    <echoproperties prefix="line.----" />
-                    <echoproperties prefix="line.--" />
-                    <echoproperties prefix="skip-" />
-                    <echoproperties prefix="line.-_-_" />
-                    <echoproperties prefix="line.----" />
-                    <echoproperties prefix="mvn-" />
                     <echoproperties prefix="line.-_-_" />
                     <echoproperties prefix="line.----" />
                   </target>
