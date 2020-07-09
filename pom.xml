@@ -30,7 +30,8 @@
     <enforce-version-consistency.version>0.0.13</enforce-version-consistency.version>
     <!-- i18n-properties = POM configured texts. Override in your local POM file to change language or content! -->
     <i18n.about>About 180n. You can override the english texts used, by adding all the i18n-properties to your POM file
-      and override the content with your own preferred text. :-)</i18n.about>
+      and override the content with your own preferred text. :-)
+    </i18n.about>
     <i18n.enforce.requireMavenVersions>xxxxXXXX</i18n.enforce.requireMavenVersions>
     <i18n.maven.run.info>Maven run "${project.name}" with these parameteres</i18n.maven.run.info>
     <!-- // @formatter:on -->
@@ -39,23 +40,25 @@
     <i18n.requireJaveVersion>You are using a version of Java considered to be too old!
       mvn-parent-pom require Java versjon &gt;= ${mvn-parent-require.min-version.java}
 
-      (You may override the property "mvn-parent-require.min-version.java". Not recommended!)</i18n.requireJaveVersion>
+      (You may override the property "mvn-parent-require.min-version.java". Not recommended!)
+    </i18n.requireJaveVersion>
     <i18n.requireMavenVersion>You are using a version of Maven considered to be too old!
       mvn-parent-pom require versjon &gt;= ${mvn-parent-require.min-version.maven}
 
-      (You may override the property "mvn-parent-require.min-version.maven". Not recommended!)</i18n.requireMavenVersion>
+      (You may override the property "mvn-parent-require.min-version.maven". Not recommended!)
+    </i18n.requireMavenVersion>
     <!-- // @formatter:off -->
     <i18n.requirePluginVersions>${mvn-debug-msg-seperator}1111
       ${line.separator}======(requirePluginVersions)======2222
 
       Maven run "${project.name}" with these parameteres [sun.java.command]:
       ${sun.java.command}
-                            _            ___ _             _                         _
-       _ __ ___  __ _ _   _(_)_ __ ___  / _ \ |_   _  __ _(_)_ __/\   /\___ _ __ ___(_) ___  _ __  ___
+      _            ___ _             _                         _
+      _ __ ___  __ _ _   _(_)_ __ ___  / _ \ |_   _  __ _(_)_ __/\   /\___ _ __ ___(_) ___  _ __  ___
       | '__/ _ \/ _` | | | | | '__/ _ \/ /_)/ | | | |/ _` | | '_ \ \ / / _ \ '__/ __| |/ _ \| '_ \/ __|
       | | |  __/ (_| | |_| | | | |  __/ ___/| | |_| | (_| | | | | \ V /  __/ |  \__ \ | (_) | | | \__ \
       |_|  \___|\__, |\__,_|_|_|  \___\/    |_|\__,_|\__, |_|_| |_|\_/ \___|_|  |___/_|\___/|_| |_|___/
-                   |_|                               |___/
+      |_|                               |___/
 
       ===============================================================
       All plugins used must have a specified version!
@@ -91,7 +94,7 @@
       (${basedir})
       (${session.executionRootDirectory})
       ${line.separator}======</mvn-debug-msg>
-    
+
     <mvn-debug-msg-seperator>=======================================================================================</mvn-debug-msg-seperator>
     <mvn-echo-maven-plugin.version>1.3.0</mvn-echo-maven-plugin.version>
     <mvn-nexus-staging-maven-plugin.version>1.6.8</mvn-nexus-staging-maven-plugin.version>
@@ -108,9 +111,9 @@
     <profile-mvn-debug-info>Profile mvn-debug was not used!</profile-mvn-debug-info>
     <!--    <skip-show-properties>${skip-mvn-debug}</skip-show-properties>-->
   </properties>
-  
+
   <build>
-    
+
     <pluginManagement>
       <plugins>
         <plugin>
@@ -163,7 +166,7 @@
         </plugin>
       </plugins>
     </pluginManagement>
-    
+
     <plugins>
       <!-- Display active profiles in the validate phase -->
       <plugin>
@@ -195,28 +198,28 @@
                   <!--suppress UnresolvedMavenProperty -->
                   <message>${line.separator}
 
-        /\/\   __ ___   _____ _ __
-       /    \ / _` \ \ / / _ \ '_ \
-      / /\/\ \ (_| |\ V /  __/ | | |
-      \/    \/\__,_| \_/ \___|_| |_| ${maven.version}
-    ( ${maven.home} )
-111
-      ${i18n.maven.run.info} [sun.java.command]:
-      ${sun.java.command}
-222
-                            _                                                         _
-       _ __ ___  __ _ _   _(_)_ __ ___  /\/\   __ ___   _____ _ __/\   /\___ _ __ ___(_) ___  _ __
-      | '__/ _ \/ _` | | | | | '__/ _ \/    \ / _` \ \ / / _ \ '_ \ \ / / _ \ '__/ __| |/ _ \| '_ \
-      | | |  __/ (_| | |_| | | | |  __/ /\/\ \ (_| |\ V /  __/ | | \ V /  __/ |  \__ \ | (_) | | | |
-      |_|  \___|\__, |\__,_|_|_|  \___\/    \/\__,_| \_/ \___|_| |_|\_/ \___|_|  |___/_|\___/|_| |_|
-                   |_|
+                    /\/\   __ ___   _____ _ __
+                    /    \ / _` \ \ / / _ \ '_ \
+                    / /\/\ \ (_| |\ V /  __/ | | |
+                    \/    \/\__,_| \_/ \___|_| |_| ${maven.version}
+                    ( ${maven.home} )
+                    111
+                    ${i18n.maven.run.info} [sun.java.command]:
+                    ${sun.java.command}
+                    222
+                    _                                                         _
+                    _ __ ___  __ _ _   _(_)_ __ ___  /\/\   __ ___   _____ _ __/\   /\___ _ __ ___(_) ___  _ __
+                    | '__/ _ \/ _` | | | | | '__/ _ \/    \ / _` \ \ / / _ \ '_ \ \ / / _ \ '__/ __| |/ _ \| '_ \
+                    | | |  __/ (_| | |_| | | | |  __/ /\/\ \ (_| |\ V /  __/ | | \ V /  __/ |  \__ \ | (_) | | | |
+                    |_|  \___|\__, |\__,_|_|_|  \___\/    \/\__,_| \_/ \___|_| |_|\_/ \___|_|  |___/_|\___/|_| |_|
+                    |_|
 
 
-      ${line.-_-_}
-      "${project.name}"
-      ${line.-_-_}
-      ${i18n.requireMavenVersion}
-      ${line.-_-_}</message>
+                    ${line.-_-_}
+                    "${project.name}"
+                    ${line.-_-_}
+                    ${i18n.requireMavenVersion}
+                    ${line.-_-_}</message>
                   <!-- // @formatter:on -->
                   <version>[${mvn-parent-require.min-version.maven},)</version>
                 </requireMavenVersion>
@@ -234,34 +237,35 @@
                   <version>[${mvn-parent-require.min-version.java},]</version>
                   <!-- // @formatter:off -->
                   <message>${line.separator}
-      ${i18n.maven.run.info} [sun.java.command]:
-      ${sun.java.command}
+                    ${i18n.maven.run.info} [sun.java.command]:
+                    ${sun.java.command}
 
-                            _           __                                      _
-       _ __ ___  __ _ _   _(_)_ __ ___  \ \  __ ___   ____ _/\   /\___ _ __ ___(_) ___  _ __
-      | '__/ _ \/ _` | | | | | '__/ _ \  \ \/ _` \ \ / / _` \ \ / / _ \ '__/ __| |/ _ \| '_ \
-      | | |  __/ (_| | |_| | | | |  __/\_/ / (_| |\ V / (_| |\ V /  __/ |  \__ \ | (_) | | | |
-      |_|  \___|\__, |\__,_|_|_|  \___\___/ \__,_| \_/ \__,_| \_/ \___|_|  |___/_|\___/|_| |_|
-                   |_|
+                    _           __                                      _
+                    _ __ ___  __ _ _   _(_)_ __ ___  \ \  __ ___   ____ _/\   /\___ _ __ ___(_) ___  _ __
+                    | '__/ _ \/ _` | | | | | '__/ _ \  \ \/ _` \ \ / / _` \ \ / / _ \ '__/ __| |/ _ \| '_ \
+                    | | |  __/ (_| | |_| | | | |  __/\_/ / (_| |\ V / (_| |\ V /  __/ |  \__ \ | (_) | | | |
+                    |_|  \___|\__, |\__,_|_|_|  \___\___/ \__,_| \_/ \__,_| \_/ \___|_|  |___/_|\___/|_| |_|
+                    |_|
 
-      ========================================================================================
+                    ========================================================================================
 
-        ▄▄▄██▀▀▀▄▄▄    ██▒   █▓ ▄▄▄
-          ▒██  ▒████▄ ▓██░   █▒▒████▄
-          ░██  ▒██  ▀█▄▓██  █▒░▒██  ▀█▄
-      ▓██▄██▓ ░██▄▄▄▄██▒██ █░░░██▄▄▄▄██
-       ▓███▒   ▓█   ▓██▒▒▀█░   ▓█   ▓██▒
-       ▒▓▒▒░   ▒▒   ▓▒█░░ ▐░   ▒▒   ▓▒█░  = ${java.version}
-       ▒ ░▒░    ▒   ▒▒ ░░ ░░    ▒   ▒▒ ░
-       ░ ░ ░    ░   ▒     ░░    ░   ▒
-       ░   ░        ░  ░   ░        ░  ░
-       ░
-      ${line.separator}
-      ${java.library.path}
 
-      ${mvn-debug-msg-seperator}1111
-      ${line.separator}======(requireJaveVersions)======2222
-      ${i18n.requireJaveVersion}</message>
+                    ▄▄▄██▀▀▀▄▄▄    ██▒   █▓ ▄▄▄
+                    ▒██  ▒████▄ ▓██░   █▒▒████▄
+                    ░██  ▒██  ▀█▄▓██  █▒░▒██  ▀█▄
+                    ▓██▄██▓ ░██▄▄▄▄██▒██ █░░░██▄▄▄▄██
+                    ▓███▒   ▓█   ▓██▒▒▀█░   ▓█   ▓██▒
+                    ▒▓▒▒░   ▒▒   ▓▒█░░ ▐░   ▒▒   ▓▒█░  = ${java.version}
+                    ▒ ░▒░    ▒   ▒▒ ░░ ░░    ▒   ▒▒ ░
+                    ░ ░ ░    ░   ▒     ░░    ░   ▒
+                    ░   ░        ░  ░   ░        ░  ░
+                    ░
+                    ${line.separator}
+                    ${java.library.path}
+
+                    ${mvn-debug-msg-seperator}1111
+                    ${line.separator}======(requireJaveVersions)======2222
+                    ${i18n.requireJaveVersion}</message>
                   <!-- // @formatter:on -->
                 </requireJavaVersion>
               </rules>
@@ -370,11 +374,11 @@
       </plugin>
     </plugins>
   </build>
-  
+
   <distributionManagement>
     <!--TODO-->
   </distributionManagement>
-  
+
   <profiles>
     <profile>
       <id>About</id>
@@ -386,7 +390,8 @@
         </property>
       </activation>
       <properties>
-        <profile-in-use_About>Yes (skip-about=${skip-about},mvn-debug-reduced=${mvn-debug-reduced}))</profile-in-use_About>
+        <profile-in-use_About>Yes (skip-about=${skip-about},mvn-debug-reduced=${mvn-debug-reduced}))
+        </profile-in-use_About>
         <skip-about>false (Overridden by activated profile: "About")</skip-about>
       </properties>
       <build>
@@ -407,13 +412,13 @@
                   <!--suppress UnresolvedMavenProperty -->
                   <!-- // @formatter:off -->
                   <message>${line.separator}
-        /${mvn-debug-msg-seperator}\
-        |                                                                                       |
-        |  "${project.name}" About
-        |                                                                                       |
-        \${mvn-debug-msg-seperator}/
-        ${i18n.about}
-        ${mvn-debug-msg}</message>
+                    /${mvn-debug-msg-seperator}\
+                    |                                                                                       |
+                    |  "${project.name}" About
+                    |                                                                                       |
+                    \${mvn-debug-msg-seperator}/
+                    ${i18n.about}
+                    ${mvn-debug-msg}</message>
                   <!-- // @formatter:on -->
                 </configuration>
               </execution>
@@ -433,7 +438,7 @@
             </executions>
           </plugin>
         </plugins>
-        
+
       </build>
     </profile>
     <profile>
@@ -446,11 +451,12 @@
         </property>
       </activation>
       <properties>
-        
+
         <!-- // @formatter:off -->
         <!--suppress UnresolvedMavenProperty -->
-        <mvn-debug-i18n-clean>${line.separator}
-          mvn-debug-i18n-clean <![CDATA[${mvn-debug-msg-seperator}
+        <mvn-debug-i18n-clean><![CDATA[${line.separator}
+          mvn-debug-i18n-clean
+          ${mvn-debug-msg-seperator}
                   _
             ___  | |   ___    __ _   _ __
            / __| | |  / _ \  / _` | | '_ \
@@ -460,8 +466,9 @@
           ${mvn-debug-msg-seperator}
           ${mvn-debug-msg}
           ${mvn-debug-msg-seperator}]]></mvn-debug-i18n-clean>
-        <mvn-debug-i18n-compile>${line.separator}
-          mvn-debug-i18n-compile <![CDATA[${mvn-debug-msg-seperator}
+        <mvn-debug-i18n-compile><![CDATA[${line.separator}
+          mvn-debug-i18n-compile
+          ${mvn-debug-msg-seperator}
                                                _   _
              ___    ___    _ __ ___    _ __   (_) | |   ___
             / __|  / _ \  | '_ ` _ \  | '_ \  | | | |  / _ \
@@ -469,7 +476,7 @@
             \___|  \___/  |_| |_| |_| | .__/  |_| |_|  \___|
                                       |_|
           ${mvn-debug-msg-seperator}]]></mvn-debug-i18n-compile>
-        <mvn-debug-i18n-test>${line.separator}
+        <mvn-debug-i18n-test><![CDATA[${line.separator}
           mvn-debug-i18n-test
           ${mvn-debug-msg-seperator}
            _                  _
@@ -478,7 +485,7 @@
           | |_  |  __/ \__ \ | |_
            \__|  \___| |___/  \__|
 
-          ${mvn-debug-msg-seperator}</mvn-debug-i18n-test>
+          ${mvn-debug-msg-seperator}]]></mvn-debug-i18n-test>
         <!--suppress UnresolvedMavenProperty -->
         <mvn-debug-i18n-validate><![CDATA[${line.separator}
         mvn-debug-i18n-validate
@@ -542,7 +549,7 @@
                   ${line.separator}======
                 </mvn-debug-msg>
         -->
-        
+
         <!-- // @formatter:on -->
         <show-version-info>true</show-version-info>
         <skip-mvn-debug>false (Overridden by activated profile: "mvn-debug")</skip-mvn-debug>
@@ -596,7 +603,8 @@
                 <phase>validate</phase>
                 <configuration>
                   <message>${mvn-debug-msg}
-                    ${mvn-debug-i18n-validate}</message>
+                    ${mvn-debug-i18n-validate}
+                  </message>
                 </configuration>
               </execution>
               <execution>
@@ -627,7 +635,8 @@
                 <phase>test</phase>
                 <configuration>
                   <message>${mvn-debug-msg}
-                    ${mvn-debug-i18n-test}</message>
+                    ${mvn-debug-i18n-test}
+                  </message>
                 </configuration>
               </execution>
               <execution>
@@ -741,7 +750,7 @@
               </execution>
             </executions>
           </plugin>
-          
+
         </plugins>
       </build>
     </profile>
@@ -792,7 +801,8 @@
         </property>
       </activation>
       <properties>
-        <profile-in-use_show-properties>Yes (skip-show-properties=${skip-show-properties})</profile-in-use_show-properties>
+        <profile-in-use_show-properties>Yes (skip-show-properties=${skip-show-properties})
+        </profile-in-use_show-properties>
         <skip-show-properties>false (Overridden by activated profile: "show-properties")</skip-show-properties>
       </properties>
       <build>
@@ -814,16 +824,16 @@
                   <!--suppress UnresolvedMavenProperty -->
                   <!-- // @formatter:off -->
                   <message>${line.separator}
-      show-properties ("${project.name}")
-      skip-mvn-debug=${skip-mvn-debug}, mvn-debug-reduced=${mvn-debug-reduced}
-      java.runtime.version=${java.runtime.version}
-      =======================================================================================
-      Maven_kjørte "${project.build.finalName}", og profilen show-properties ble benyttet:
-      (Maven (v ${maven.version}) fra ${maven.home}
-      ${profile-mvn-debug-info}
-      ---------------------------------------------------------------------------------------
-      mvn-parent-pom reporting: ${profile-mvn-debug-info}
-      =======================================================================================</message>
+                    show-properties ("${project.name}")
+                    skip-mvn-debug=${skip-mvn-debug}, mvn-debug-reduced=${mvn-debug-reduced}
+                    java.runtime.version=${java.runtime.version}
+                    =======================================================================================
+                    Maven_kjørte "${project.build.finalName}", og profilen show-properties ble benyttet:
+                    (Maven (v ${maven.version}) fra ${maven.home}
+                    ${profile-mvn-debug-info}
+                    ---------------------------------------------------------------------------------------
+                    mvn-parent-pom reporting: ${profile-mvn-debug-info}
+                    =======================================================================================</message>
                   <!-- // @formatter:on -->
                 </configuration>
               </execution>
@@ -916,7 +926,8 @@
       </activation>
       <properties>
         <profile-in-use_show-version-info>Yes (show-version-info=${show-version-info},
-          skip?-=${skip-show-version-info})</profile-in-use_show-version-info>
+          skip?-=${skip-show-version-info})
+        </profile-in-use_show-version-info>
         <skip-show-version-info>false (Overridden by activated profile: "show-version-info")</skip-show-version-info>
       </properties>
       <build>
@@ -936,7 +947,7 @@
             </executions>
           </plugin>
         </plugins>
-        
+
       </build>
     </profile>
     <profile>
@@ -989,19 +1000,19 @@
                   <!--suppress UnresolvedMavenProperty -->
                   <!-- // @formatter:off -->
                   <message>${line.separator}
-      "${project.name}":
-      =======================================================================================
-      mvn-debug-reduced
-      Maven_kjørte "${project.build.finalName}", og profilen mvn-debug-reduced ble benyttet:
-      (Maven (v ${maven.version}) fra ${maven.home}
-      ${profile-mvn-debug-info}
-      ---------------------------------------------------------------------------------------
-      mvn-parent-pom reporting: ${profile-mvn-debug-info}
-      =======================================================================================
-      | Det er mvn-parent-pom (${project.version}) som har konfigurert deler
-      | av dette bygget, som er kjørt av ${maven.home}
-      | Maven profilen mvn-debug-reduced er benyttet for å vise denne informasjonen
-      =======================================================================================</message>
+                    "${project.name}":
+                    =======================================================================================
+                    mvn-debug-reduced
+                    Maven_kjørte "${project.build.finalName}", og profilen mvn-debug-reduced ble benyttet:
+                    (Maven (v ${maven.version}) fra ${maven.home}
+                    ${profile-mvn-debug-info}
+                    ---------------------------------------------------------------------------------------
+                    mvn-parent-pom reporting: ${profile-mvn-debug-info}
+                    =======================================================================================
+                    | Det er mvn-parent-pom (${project.version}) som har konfigurert deler
+                    | av dette bygget, som er kjørt av ${maven.home}
+                    | Maven profilen mvn-debug-reduced er benyttet for å vise denne informasjonen
+                    =======================================================================================</message>
                   <!-- // @formatter:on -->
                 </configuration>
               </execution>
@@ -1010,7 +1021,7 @@
         </plugins>
       </build>
     </profile>
-    
+
   </profiles>
-  
+
 </project>
