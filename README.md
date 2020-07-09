@@ -1,11 +1,11 @@
 # mvn-parent-pom
-##Introduction
-When working with Maven as a build system, you often end up copying configuration of dependencies, and use of  
+## Introduction
+When working with Maven as a build system, you often end up copying configuration of dependencies, and use of 
 different plugins from an old project pom.xml file to the pom.xml file in a new project.
 
-Getting configuration and settings right can be time consuming so reuse is helpful.
+Getting configuration and settings right can be timeconsuming so reuse is helpful.
 A Maven best-practice solution is using a "parent POM" for your new project (instead of copying).
-A Maven parent POM can collect common configuration and settings that shall be used by many projects in your company.  
+A Maven parent POM can collect common configurations and settings that shall be used by many projects in your company.  
 
 This is a typical setup: 
 ```
@@ -27,7 +27,7 @@ Here the "new-project-name" pom.xml file will inherit and reuse everything from 
 It is not uncommon to have a *hierarchy* of parent and grand-parent POMs. 
 Eg. each project pom inherits a team parent POM which in turn inherits a organisation parent POM. 
 
-##Usage
+## Usage
 **mvn-parent-pom** have the potential to be used both as a direct parent and as grand-parent - actually a top-parent POM 
 for all others to inherit :-)
 This example setup put it as a parent to the **company-parent-pom**:
@@ -52,7 +52,7 @@ all the useful profiles in the **mvn-parent-pom** can now be used by projects th
 
 (Using the **mvn-parent-pom** as a direct parent have the same configuration as shown above.)
 
-###Activating profiles you want used 
+### Activating profiles you want used 
 
 When using Maven you may manually-activate one or more build profiles. This can be done in many ways. 
 Profiles can be activated in the Maven settings (your **~/.m2/settings.xml** file), via the *activeProfiles* section. 
@@ -73,7 +73,7 @@ Activate profiles by adding them to your in your ~/.m2/settings.xml file, like s
 
 The list of *"activeProfiles"* can be specified in the order in which they should be applied.
 
-###Skipping use of default profile(s)
+### Skipping use of default profile(s)
 
 The only default profile configured is the About profile, but if you don't like to see the text 
 from the About profile you may add the skip-about property to you POM file:
@@ -108,7 +108,7 @@ skip-mvn-debug property with value true will
 
 ````
 
-####Warning
+#### Warning
 Be aware that setting of properies in profiles can be tricky, 
 especially when you override eksisting properties. Take care to only set/override a property one place. Think of the 
 problem if you set/override the same property in multiple profiles, then you may loose control of which profile that
